@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League Command | AthleticOS</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#52C920',
+                        secondary: '#F9FF00',
+                        background: '#1A1A1A',
+                        foreground: '#F5F8F1',
+                        'deep-void': '#012300',
+                    },
+                    fontFamily: {
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                        ui: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-foreground min-h-screen relative overflow-x-hidden font-body">
+
+    <div id="athleticos-canvas-wrapper" class="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden fixed" style="background-color: #1A1A1A;">
+        <canvas id="athleticosNetwork"></canvas>
+    </div>
+
+    <div class="fixed top-0 left-0 right-0 h-10 bg-secondary text-deep-void z-[60] flex items-center justify-center px-4">
+        <p class="font-ui text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-center w-full truncate">
+            ALPHA LAUNCH PHASE: Limited Founding Partner positions remaining for the 2026 Cycle.
+            <a href="https://bayermedia.net/founding-partner-protocol" target="_blank" class="underline underline-offset-2 hover:opacity-80 ml-1">[View Partnership Terms →]</a>
+        </p>
+    </div>
+
+    <header class="fixed top-10 w-full z-50 bg-[#1A1A1A]/70 backdrop-blur-md border-b border-white/5">
+        <div class="container mx-auto px-4 h-[90px] md:h-28 flex items-center justify-between">
+            <a class="flex items-center gap-2" href="/">
+                <img src="https://vibe.filesafe.space/1777786939579445963/attachments/af2317c7-3b7b-427b-8314-24984696e9e7.png" alt="AthleticOS Logo" class="h-[72px] md:h-[108px] w-auto object-contain">
+            </a>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-4">
+                    <a class="font-ui text-[14px] text-foreground hover:text-secondary transition-colors" href="/legal">Legal</a>
+                    <span class="text-white/20 select-none">|</span>
+                    <a href="https://portal.athleticos.net/login" target="_blank" class="font-ui text-[14px] text-foreground hover:text-secondary transition-colors">Partner Portal</a>
+                    <span class="text-white/20 select-none">|</span>
+                </div>
+                <a href="#audit" class="inline-flex items-center justify-center rounded-md font-ui uppercase tracking-[1px] font-bold bg-primary text-deep-void hover:bg-secondary transition-colors whitespace-nowrap text-xs px-4 h-9">
+                    Initialize Audit
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-40 pb-20 md:pt-48 md:pb-32 flex items-center min-h-[80vh]">
+        <div class="container relative z-10 mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                <h1 id="hero-headline" class="font-heading text-5xl md:text-7xl font-bold leading-tight tracking-tight text-foreground">
+                    <span class="opacity-50 text-sm block mb-2 uppercase tracking-widest animate-pulse">Syncing Logic...</span>
+                </h1>
+                <p id="hero-subtext" class="font-body text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto leading-relaxed"></p>
+                <div class="pt-8 w-full max-w-xl mx-auto">
+                    <a href="#audit" class="inline-flex items-center justify-center h-14 px-8 font-ui text-sm md:text-lg uppercase font-bold tracking-[1px] bg-primary text-deep-void hover:bg-secondary transition-colors rounded-md w-auto min-w-[280px]">
+                        Initialize Audit &rarr;
+                    </a>
+                </div>
+                <div class="pt-8 flex flex-col items-center gap-4">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-black/40 backdrop-blur-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 text-primary"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                        <span class="font-ui text-sm uppercase tracking-widest text-foreground/70">Powered by Bayer Media Services</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 relative bg-background border-t border-white/5">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                <h2 class="font-heading text-4xl md:text-6xl font-bold leading-tight text-foreground">Drowning in a Sea of Chaotic Spreadsheets?</h2>
+                <p class="font-body text-xl text-foreground/70 leading-relaxed max-w-3xl mx-auto">League Directors are trapped in a cycle of manual updates, adjudicating schedule conflicts, and staying up until midnight manually calculating goal differentials to update public standings. While you're putting out logistical fires, the strategic growth of your league stagnates.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 relative bg-card border-t border-white/5">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center space-y-8 mb-16">
+                <h2 class="font-heading text-4xl md:text-5xl font-bold leading-tight text-foreground">The Engineering Blueprint: Flawless Fixture Architecture.</h2>
+                <p class="font-body text-xl text-foreground/70">Unlike generic sports software, AthleticOS operates strictly as a stateless processing layer.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="p-8 rounded-2xl bg-deep-void border border-primary/20 hover:border-primary/50 transition-all">
+                    <div class="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 text-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5V19A9 3 0 0 0 21 19V5"></path><path d="M3 12A9 3 0 0 0 21 12"></path></svg>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold mb-4 text-foreground">Master Auto-Scheduler</h4>
+                    <p class="font-body text-foreground/70 leading-relaxed">Click one button to generate hundreds of conflict-free fixtures. The system mathematically eliminates double-bookings.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-deep-void border border-primary/20 hover:border-secondary/50 transition-all">
+                    <div class="h-12 w-12 rounded-lg bg-secondary/10 flex items-center justify-center mb-6 text-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"></path><path d="m3.3 7 8.7 5 8.7-5"></path><path d="M12 22V12"></path></svg>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold mb-4 text-foreground">Real-Time Leaderboards</h4>
+                    <p class="font-body text-foreground/70 leading-relaxed">When games happen, coaches enter scores that instantly and automatically update the public standings. Zero manual entry.</p>
+                </div>
+                <div class="p-8 rounded-2xl bg-deep-void border border-primary/20 hover:border-primary/50 transition-all">
+                    <div class="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center mb-6 text-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                    </div>
+                    <h4 class="font-heading text-xl font-bold mb-4 text-foreground">Sovereign Data Sync</h4>
+                    <p class="font-body text-foreground/70 leading-relaxed">Decentralized stats and rosters from every team sync instantly into your master federation vault without leaving Google Workspace.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 relative bg-background border-t border-white/5">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center space-y-8 mb-16">
+                <h2 class="font-heading text-4xl font-bold text-foreground">The "SaaS Tax" Displacement Matrix.</h2>
+                <p class="font-body text-xl text-foreground/70">Crush the competition. AthleticOS versus Legacy Sports SaaS.</p>
+            </div>
+            <div class="max-w-5xl mx-auto overflow-x-auto">
+                <table class="w-full text-left border-collapse min-w-[600px] bg-card rounded-xl overflow-hidden">
+                    <thead>
+                        <tr>
+                            <th class="p-6 border-b border-white/10 font-ui uppercase tracking-widest text-foreground/50 w-1/3">Capability</th>
+                            <th class="p-6 border-b border-white/10 font-heading text-2xl text-primary text-center bg-primary/5 rounded-t-xl w-1/3 border-x border-primary/20">AthleticOS</th>
+                            <th class="p-6 border-b border-white/10 font-heading text-2xl text-foreground/50 text-center w-1/3">Legacy SaaS</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-body text-lg">
+                        <tr>
+                            <td class="p-6 border-b border-white/5 text-foreground">Baseline Cost</td>
+                            <td class="p-6 border-b border-white/5 text-center bg-primary/5 border-x border-primary/20 text-foreground font-bold">One-Time Sovereignty Fee</td>
+                            <td class="p-6 border-b border-white/5 text-center text-foreground/50">Perpetual Monthly Fees</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 border-b border-white/5 text-foreground">Data Ownership</td>
+                            <td class="p-6 border-b border-white/5 text-center bg-primary/5 border-x border-primary/20 text-foreground font-bold">100% Google Vault Autonomy</td>
+                            <td class="p-6 border-b border-white/5 text-center text-foreground/50">Proprietary Database Lock-in</td>
+                        </tr>
+                        <tr>
+                            <td class="p-6 border-b border-white/5 text-foreground">Customization</td>
+                            <td class="p-6 border-b border-white/5 text-center bg-primary/5 border-x border-primary/20 rounded-b-xl text-foreground font-bold">Included Bespoke Logic</td>
+                            <td class="p-6 border-b border-white/5 text-center text-foreground/50">'Take-it-or-leave-it' Features</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 relative bg-card border-t border-white/5">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center space-y-6 mb-16">
+                <h2 class="font-heading text-4xl font-bold text-foreground">The Cost of Human Error vs. Automated Perfection.</h2>
+                <p class="font-body text-xl text-foreground/70">Stop paying the "SaaS Tax" for every team or player. Our fixed-rate logic investment costs a fraction of hiring a dedicated league administrator to manage your spreadsheets.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="p-10 rounded-2xl bg-deep-void border border-primary/30 border-t-2 border-t-primary/60">
+                    <h3 class="font-heading text-2xl font-bold text-foreground mb-4">The Sovereignty Fee</h3>
+                    <p class="font-body text-foreground/70 text-lg">AthleticOS replaces the 5 different apps your federation is forced to use. One unified system that makes your job easier, for one fixed institutional fee.</p>
+                </div>
+                <div class="p-10 rounded-2xl bg-deep-void border border-primary/30 border-t-2 border-t-primary/60">
+                    <h3 class="font-heading text-2xl font-bold text-foreground mb-4">The Lifetime Customization</h3>
+                    <p class="font-body text-foreground/70 text-lg">Your league's unique tie-breaker logic and tournament rules? We build it into your bespoke engine, and it’s yours for life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 relative bg-background border-t border-white/5">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="font-heading text-4xl md:text-5xl font-bold text-foreground mb-6">Professionalize the Department.</h2>
+            <p class="font-body text-xl text-foreground/70 max-w-3xl mx-auto mb-12">AthleticOS deployment includes a complete creative media stack to professionalize recruitment, branding, and fundraising across your entire league, federation, or association.</p>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="p-8 border border-white/10 rounded-2xl bg-card">
+                    <h4 class="font-heading text-xl font-bold text-secondary mb-3">Cinematic Branding</h4>
+                    <p class="font-body text-foreground/70">Studio-grade intros and visual identities that command respect.</p>
+                </div>
+                <div class="p-8 border border-white/10 rounded-2xl bg-card">
+                    <h4 class="font-heading text-xl font-bold text-secondary mb-3">Interactive Video Logic</h4>
+                    <p class="font-body text-foreground/70">Recruitment videos with branching logic and personalized pathways.</p>
+                </div>
+                <div class="p-8 border border-white/10 rounded-2xl bg-card">
+                    <h4 class="font-heading text-xl font-bold text-secondary mb-3">High-Def Visual Assets</h4>
+                    <p class="font-body text-foreground/70">Boardroom-level presentations and pitch decks powered by Bayer Media.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="audit" class="py-24 relative bg-card border-t border-white/5">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto bg-deep-void border border-primary/30 p-8 md:p-12 rounded-3xl shadow-[0_0_50px_rgba(82,201,32,0.1)]">
+                <div class="text-center mb-10">
+                    <h2 class="font-heading text-3xl md:text-4xl font-bold text-foreground mb-2">Initialize Your League Audit</h2>
+                    <p class="font-ui uppercase tracking-widest text-secondary text-sm">Alpha Phase Deployment</p>
+                </div>
+                
+                <form class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="font-ui uppercase tracking-widest text-xs text-foreground/50">Primary Operator</label>
+                            <input required type="text" placeholder="Full Name" class="w-full bg-background border border-white/10 rounded-lg px-4 py-3 text-foreground focus:border-primary outline-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-ui uppercase tracking-widest text-xs text-foreground/50">Institutional Coordinates</label>
+                            <input required type="email" placeholder="Work Email" class="w-full bg-background border border-white/10 rounded-lg px-4 py-3 text-foreground focus:border-primary outline-none">
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="space-y-2">
+                            <label class="font-ui uppercase tracking-widest text-xs text-foreground/50">Role / Tier</label>
+                            <select required class="w-full bg-background border border-white/10 rounded-lg px-4 py-3 text-foreground focus:border-primary outline-none">
+                                <option value="" disabled selected>Select Role</option>
+                                <option value="Federation Head">Federation Head</option>
+                                <option value="League Manager">League Manager</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-ui uppercase tracking-widest text-xs text-foreground/50">Scale (Schools/Teams)</label>
+                            <input required type="number" placeholder="Total Teams" class="w-full bg-background border border-white/10 rounded-lg px-4 py-3 text-foreground focus:border-primary outline-none">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-ui uppercase tracking-widest text-xs text-foreground/50">SaaS Tax ($)</label>
+                            <input required type="number" placeholder="Annual spend" class="w-full bg-background border border-white/10 rounded-lg px-4 py-3 text-foreground focus:border-primary outline-none">
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-white/5 space-y-4">
+                        <label class="font-ui uppercase tracking-widest text-xs text-foreground/50">The Pain Point</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" class="w-5 h-5 rounded border-white/20 bg-background accent-primary">
+                                <span class="font-body text-sm text-foreground/80">Manual Scheduling Conflicts</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" class="w-5 h-5 rounded border-white/20 bg-background accent-primary">
+                                <span class="font-body text-sm text-foreground/80">Late Score Reporting</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" class="w-5 h-5 rounded border-white/20 bg-background accent-primary">
+                                <span class="font-body text-sm text-foreground/80">Roster Verification Nightmares</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input type="checkbox" class="w-5 h-5 rounded border-white/20 bg-background accent-primary">
+                                <span class="font-body text-sm text-foreground/80">Fragmented Communication</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="pt-8">
+                        <button type="submit" class="w-full h-14 rounded-lg bg-secondary text-deep-void font-ui uppercase tracking-[2px] font-bold text-lg hover:bg-primary transition-all shadow-[0_0_20px_rgba(249,255,0,0.2)]">
+                            Initialize Logic
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-background border-t-2 border-primary pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div class="space-y-6">
+                    <h4 class="font-ui text-lg uppercase tracking-widest font-bold text-foreground">The Blueprint</h4>
+                    <div class="flex flex-col space-y-3">
+                        <a href="/#architecture" class="font-body text-foreground/70 hover:text-secondary transition-colors">System Blueprint</a>
+                        <a href="/#logic" class="font-body text-foreground/70 hover:text-secondary transition-colors">Data Sovereignty</a>
+                        <a href="/#ecosystem" class="font-body text-foreground/70 hover:text-secondary transition-colors">Performance Stack</a>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="font-ui text-lg uppercase tracking-widest font-bold text-foreground">Governance</h4>
+                    <div class="flex flex-col space-y-3">
+                        <a href="/legal" class="font-body text-foreground/70 hover:text-secondary transition-colors">Terms of Service</a>
+                        <a href="/legal" class="font-body text-foreground/70 hover:text-secondary transition-colors">Privacy Policy</a>
+                        <a href="https://bayermedia.net" target="_blank" class="font-body text-foreground/70 hover:text-secondary transition-colors">Institutional Governance</a>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="font-ui text-lg uppercase tracking-widest font-bold text-foreground">Access & Support</h4>
+                    <div class="flex flex-col space-y-3">
+                        <a href="https://portal.athleticos.net/login" class="font-body text-foreground/70 hover:text-secondary transition-colors">Partner Portal</a>
+                        <a href="mailto:support@athleticos.net" class="font-body text-foreground/70 hover:text-secondary transition-colors">support@athleticos.net</a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col lg:flex-row items-center justify-between gap-8">
+                <div class="flex items-center gap-3 opacity-50">
+                    <img src="https://assets.cdn.filesafe.space/w6yl5bCMqSFns8z4MHRt/media/6937bf41aba1f67abec45673.png" alt="Bayer Media Services" class="h-8 w-8 object-contain grayscale">
+                    <span class="font-ui uppercase tracking-widest text-xs">Engineered by Bayer Media Services</span>
+                </div>
+                <div class="flex gap-4">
+                    <span class="px-3 py-1 text-[10px] uppercase tracking-widest border border-white/10 rounded-full text-foreground/50">Zero-Retention Logic</span>
+                    <span class="px-3 py-1 text-[10px] uppercase tracking-widest border border-white/10 rounded-full text-foreground/50">Google Native</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = "https://script.google.com/a/macros/athleticos.net/s/AKfycbzhqjm1IG_d9ho-_y4E2Y7Ht1Gp3gcoQDLXYdE3TIAF-TjBFbud6x5mFJpId7LB4mGM/exec";
+
+        async function loadContent() {
+            try {
+                const response = await fetch(API_URL + "?t=" + new Date().getTime(), {
+                    cache: 'no-store',
+                    headers: { 'Pragma': 'no-cache' },
+                    redirect: 'follow'
+                });
+                
+                if (!response.ok) throw new Error("HTTP Status " + response.status);
+                
+                const data = await response.json();
+                
+                // Target 'League' page data from the sheet
+                if(data.League && data.League.Hero) {
+                    if (data.League.Hero.Headline && data.League.Hero.Headline.text) {
+                        document.getElementById('hero-headline').innerText = data.League.Hero.Headline.text;
+                    }
+                    if (data.League.Hero.Subtext && data.League.Hero.Subtext.text) {
+                        document.getElementById('hero-subtext').innerText = data.League.Hero.Subtext.text;
+                    }
+                }
+            } catch (error) {
+                console.error("AthleticOS Logic Sync Failed:", error);
+                document.getElementById('hero-headline').innerText = "Execute at Scale. End the Scheduling Chaos.";
+                document.getElementById('hero-subtext').innerText = "The Master Auto-Scheduler & Real-Time Leaderboard Engine. Stop fielding complaints about double-booked venues and late score updates.";
+            }
+        }
+        
+        loadContent();
+    </script>
+
+    <script>
+        const canvas = document.getElementById('athleticosNetwork');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let nodes = [];
+        const hubs = [];
+        
+        const COLOR_LIME_BASE = '82, 201, 32';      
+        const COLOR_YELLOW_BASE = '249, 255, 0';    
+        const COLOR_CARBON = '#1A1A1A';
+
+        let mouse = { x: -1000, y: -1000, radius: 200 };
+
+        function resize() {
+            const wrapper = document.getElementById('athleticos-canvas-wrapper');
+            width = canvas.width = wrapper.offsetWidth || window.innerWidth;
+            height = canvas.height = wrapper.offsetHeight || window.innerHeight;
+        }
+
+        window.addEventListener('resize', () => {
+            resize();
+            initNetwork();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        class Node {
+            constructor(x, y, isHub = false) {
+                this.x = x;
+                this.y = y;
+                this.baseX = x;
+                this.baseY = y;
+                this.isHub = isHub;
+                
+                this.baseSize = isHub ? 6 : Math.random() * 1.5 + 1;
+                this.vx = (Math.random() - 0.5) * 0.8;
+                this.vy = (Math.random() - 0.5) * 0.8;
+                this.offset = Math.random() * 100; 
+            }
+
+            draw(time) {
+                ctx.beginPath();
+                
+                if (this.isHub) {
+                    let currentSize = this.baseSize + Math.sin(time * 3 + this.offset) * 2;
+                    ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${COLOR_LIME_BASE}, 1)`;
+                    ctx.shadowBlur = 20;
+                    ctx.shadowColor = `rgba(${COLOR_LIME_BASE}, 0.8)`;
+                } else {
+                    ctx.arc(this.x, this.y, this.baseSize, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${COLOR_LIME_BASE}, 0.6)`;
+                    ctx.shadowBlur = 0; 
+                }
+                
+                ctx.fill();
+            }
+
+            update(time) {
+                if (!this.isHub) {
+                    this.x += this.vx;
+                    this.y += this.vy;
+
+                    if (this.x < 0 || this.x > width) this.vx = -this.vx;
+                    if (this.y < 0 || this.y > height) this.vy = -this.vy;
+                }
+
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < mouse.radius) {
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (mouse.radius - distance) / mouse.radius; 
+                    const pushX = forceDirectionX * force * 4;
+                    const pushY = forceDirectionY * force * 4;
+                    
+                    this.x -= pushX;
+                    this.y -= pushY;
+                } else {
+                    if (this.x !== this.baseX && this.isHub) this.x -= (this.x - this.baseX) * 0.05;
+                    if (this.y !== this.baseY && this.isHub) this.y -= (this.y - this.baseY) * 0.05;
+                }
+
+                this.draw(time);
+            }
+        }
+
+        function initNetwork() {
+            nodes = [];
+            hubs.length = 0;
+            
+            hubs.push(new Node(width * 0.25, height * 0.4, true));
+            hubs.push(new Node(width * 0.5, height * 0.6, true));
+            hubs.push(new Node(width * 0.75, height * 0.35, true));
+            
+            hubs.forEach(hub => nodes.push(hub));
+
+            let numberOfNodes = Math.floor((width * height) / 10000); 
+            for (let i = 0; i < numberOfNodes; i++) {
+                nodes.push(new Node(Math.random() * width, Math.random() * height));
+            }
+        }
+
+        function drawBackground() {
+            let gradientX = mouse.x !== -1000 ? mouse.x : width / 2;
+            let gradientY = mouse.y !== -1000 ? mouse.y : height / 2;
+            
+            let bgGradient = ctx.createRadialGradient(gradientX, gradientY, 0, gradientX, gradientY, width * 0.6);
+            bgGradient.addColorStop(0, '#023800'); 
+            bgGradient.addColorStop(1, COLOR_CARBON); 
+            
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, width, height);
+        }
+
+        function connectAndStreamData(time) {
+            ctx.shadowBlur = 0; 
+            
+            for (let a = 0; a < nodes.length; a++) {
+                for (let b = a + 1; b < nodes.length; b++) {
+                    let dx = nodes[a].x - nodes[b].x;
+                    let dy = nodes[a].y - nodes[b].y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 150) {
+                        let opacity = 1 - (distance / 150);
+                        let isHubConnection = nodes[a].isHub || nodes[b].isHub;
+
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[a].x, nodes[a].y);
+                        ctx.lineTo(nodes[b].x, nodes[b].y);
+                        
+                        if (isHubConnection) {
+                            ctx.strokeStyle = `rgba(${COLOR_LIME_BASE}, ${opacity * 0.6})`;
+                            ctx.lineWidth = 1.2;
+                        } else {
+                            ctx.strokeStyle = `rgba(${COLOR_LIME_BASE}, ${opacity * 0.2})`;
+                            ctx.lineWidth = 0.5;
+                        }
+                        ctx.stroke();
+
+                        if (isHubConnection && opacity > 0.3) {
+                            let t = (time * 0.5 + nodes[b].offset) % 1; 
+                            
+                            let startNode = nodes[a].isHub ? nodes[b] : nodes[a];
+                            let endNode = nodes[a].isHub ? nodes[a] : nodes[b];
+                            
+                            let packetX = startNode.x + (endNode.x - startNode.x) * t;
+                            let packetY = startNode.y + (endNode.y - startNode.y) * t;
+
+                            ctx.beginPath();
+                            ctx.arc(packetX, packetY, 2, 0, Math.PI * 2);
+                            ctx.fillStyle = `rgba(${COLOR_YELLOW_BASE}, ${opacity})`;
+                            ctx.shadowBlur = 10;
+                            ctx.shadowColor = `rgba(${COLOR_YELLOW_BASE}, 1)`;
+                            ctx.fill();
+                            ctx.shadowBlur = 0; 
+                        }
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            let time = Date.now() * 0.001; 
+            drawBackground();
+            connectAndStreamData(time);
+            nodes.forEach(node => node.update(time));
+        }
+
+        resize();
+        initNetwork();
+        animate();
+    </script>
+</body>
+</html>
