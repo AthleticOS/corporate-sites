@@ -73,11 +73,8 @@
 
         async function loadContent() {
             try {
-                const response = await fetch(API_URL + "?t=" + new Date().getTime(), {
-                    cache: 'no-store',
-                    headers: { 'Pragma': 'no-cache' },
-                    redirect: 'follow'
-                });
+                // Stripped out the CORS-triggering headers. The timestamp alone acts as the cache buster.
+                const response = await fetch(API_URL + "?t=" + new Date().getTime());
                 
                 if (!response.ok) throw new Error("HTTP Status " + response.status);
                 const data = await response.json();
