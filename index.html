@@ -161,13 +161,15 @@
 
         async function loadContent() {
             try {
-                // Nuclear cache-busting: Timestamp + no-store headers
+                // Ensure redirect is followed to bypass Google's internal routing
                 const response = await fetch(API_URL + "?t=" + new Date().getTime(), {
-                    cache: 'no-store',
-                    headers: {
-                        'Pragma': 'no-cache'
-                    }
+                    redirect: 'follow'
                 });
+                
+                if (!response.ok) {
+                    throw new Error("HTTP Status " + response.status);
+                }
+                
                 const data = await response.json();
                 
                 if(data.Home && data.Home.Hero) {
@@ -180,8 +182,10 @@
                 }
             } catch (error) {
                 console.error("AthleticOS Logic Sync Failed:", error);
-                document.getElementById('hero-headline').innerText = "Select Your Command Tier.";
-                document.getElementById('hero-subtext').innerText = "AthleticOS provides bespoke logic engines tailored to your specific operational role.";
+                // Diagnostic Display Banner
+                document.getElementById('hero-headline').innerText = "Workspace Security Block";
+                document.getElementById('hero-subtext').innerHTML = "Your API is perfectly active, but Google Workspace is blocking the public website from reading it. <br><br><strong>1. Go to Apps Script > Manage Deployments. <br>2. Set 'Who has access' strictly to 'Anyone' (NOT 'Anyone within athleticos.net'). <br>3. You MUST choose 'New Version' before hitting Deploy.</strong>";
+                document.getElementById('hero-subtext').className = "font-body text-lg text-secondary border border-secondary/50 bg-secondary/10 p-4 rounded-xl max-w-2xl mx-auto leading-relaxed mt-6";
             }
         }
         
