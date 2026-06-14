@@ -29,7 +29,7 @@
         }
     </script>
     
-    <script src="./components.js"></script>
+    <script src="components.js"></script>
 </head>
 <body class="bg-background text-foreground min-h-screen relative overflow-x-hidden font-body">
 
@@ -326,21 +326,19 @@
                 });
                 
                 if (!response.ok) throw new Error("HTTP Status " + response.status);
-                
                 const data = await response.json();
                 
                 if(data.League && data.League.Hero) {
-                    if (data.League.Hero.Headline && data.League.Hero.Headline.text) {
-                        document.getElementById('hero-headline').innerText = data.League.Hero.Headline.text;
-                    }
-                    if (data.League.Hero.Subtext && data.League.Hero.Subtext.text) {
-                        document.getElementById('hero-subtext').innerText = data.League.Hero.Subtext.text;
-                    }
+                    if (data.League.Hero.Headline) document.getElementById('hero-headline').innerText = data.League.Hero.Headline.text;
+                    if (data.League.Hero.Subtext) document.getElementById('hero-subtext').innerText = data.League.Hero.Subtext.text;
+                } else {
+                    throw new Error("Missing 'League' or 'Hero' object in Google Sheet.");
                 }
             } catch (error) {
                 console.error("AthleticOS Logic Sync Failed:", error);
-                document.getElementById('hero-headline').innerText = "Execute at Scale. End the Scheduling Chaos.";
-                document.getElementById('hero-subtext').innerText = "The Master Auto-Scheduler & Real-Time Leaderboard Engine. Stop fielding complaints about double-booked venues and late score updates.";
+                document.getElementById('hero-headline').innerText = "Data Alignment Error";
+                document.getElementById('hero-subtext').innerHTML = "We connected to Google, but couldn't find the target text. <br><br>Check your Google Sheet and ensure Column A says exactly <strong>League</strong> (capital L) and Column B says <strong>Hero</strong>.";
+                document.getElementById('hero-subtext').className = "font-body text-lg text-secondary border border-secondary/50 bg-secondary/10 p-4 rounded-xl max-w-2xl mx-auto leading-relaxed mt-6";
             }
         }
         
@@ -348,17 +346,14 @@
 
         // Tab Switcher Logic for Architecture Section
         function switchTab(tabId) {
-            // Reset all buttons
             document.getElementById('tab-integration').className = "px-3 py-3 font-ui uppercase tracking-widest text-xs sm:text-sm rounded-sm text-muted-foreground hover:text-foreground transition-all";
             document.getElementById('tab-capabilities').className = "px-3 py-3 font-ui uppercase tracking-widest text-xs sm:text-sm rounded-sm text-muted-foreground hover:text-foreground transition-all";
             document.getElementById('tab-visuals').className = "px-3 py-3 font-ui uppercase tracking-widest text-xs sm:text-sm rounded-sm text-muted-foreground hover:text-foreground transition-all";
             
-            // Hide all content
             document.getElementById('content-integration').classList.replace('block', 'hidden');
             document.getElementById('content-capabilities').classList.replace('block', 'hidden');
             document.getElementById('content-visuals').classList.replace('block', 'hidden');
             
-            // Activate selected tab
             document.getElementById('tab-' + tabId).className = "px-3 py-3 font-ui uppercase tracking-widest text-xs sm:text-sm rounded-sm bg-primary text-deep-void font-bold transition-all";
             document.getElementById('content-' + tabId).classList.replace('hidden', 'block');
         }
@@ -367,15 +362,12 @@
     <script>
         const canvas = document.getElementById('athleticosNetwork');
         const ctx = canvas.getContext('2d');
-        
         let width, height;
         let nodes = [];
         const hubs = [];
-        
         const COLOR_LIME_BASE = '82, 201, 32';      
         const COLOR_YELLOW_BASE = '249, 255, 0';    
         const COLOR_CARBON = '#1A1A1A';
-
         let mouse = { x: -1000, y: -1000, radius: 200 };
 
         function resize() {
@@ -396,8 +388,7 @@
             constructor(x, y, isHub = false) {
                 this.x = x; this.y = y; this.baseX = x; this.baseY = y; this.isHub = isHub;
                 this.baseSize = isHub ? 6 : Math.random() * 1.5 + 1;
-                this.vx = (Math.random() - 0.5) * 0.8;
-                this.vy = (Math.random() - 0.5) * 0.8;
+                this.vx = (Math.random() - 0.5) * 0.8; this.vy = (Math.random() - 0.5) * 0.8;
                 this.offset = Math.random() * 100; 
             }
             draw(time) {
@@ -406,8 +397,7 @@
                     let currentSize = this.baseSize + Math.sin(time * 3 + this.offset) * 2;
                     ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
                     ctx.fillStyle = `rgba(${COLOR_LIME_BASE}, 1)`;
-                    ctx.shadowBlur = 20;
-                    ctx.shadowColor = `rgba(${COLOR_LIME_BASE}, 0.8)`;
+                    ctx.shadowBlur = 20; ctx.shadowColor = `rgba(${COLOR_LIME_BASE}, 0.8)`;
                 } else {
                     ctx.arc(this.x, this.y, this.baseSize, 0, Math.PI * 2);
                     ctx.fillStyle = `rgba(${COLOR_LIME_BASE}, 0.6)`;
@@ -425,8 +415,7 @@
                 let distance = Math.sqrt(dx * dx + dy * dy);
                 if (distance < mouse.radius) {
                     const force = (mouse.radius - distance) / mouse.radius; 
-                    this.x -= (dx / distance) * force * 4;
-                    this.y -= (dy / distance) * force * 4;
+                    this.x -= (dx / distance) * force * 4; this.y -= (dy / distance) * force * 4;
                 } else {
                     if (this.x !== this.baseX && this.isHub) this.x -= (this.x - this.baseX) * 0.05;
                     if (this.y !== this.baseY && this.isHub) this.y -= (this.y - this.baseY) * 0.05;
@@ -450,8 +439,7 @@
             let gradientX = mouse.x !== -1000 ? mouse.x : width / 2;
             let gradientY = mouse.y !== -1000 ? mouse.y : height / 2;
             let bgGradient = ctx.createRadialGradient(gradientX, gradientY, 0, gradientX, gradientY, width * 0.6);
-            bgGradient.addColorStop(0, '#023800'); 
-            bgGradient.addColorStop(1, COLOR_CARBON); 
+            bgGradient.addColorStop(0, '#023800'); bgGradient.addColorStop(1, COLOR_CARBON); 
             ctx.fillStyle = bgGradient; ctx.fillRect(0, 0, width, height);
         }
 
