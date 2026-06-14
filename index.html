@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AthleticOS | Sovereign Logic Engine</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#52C920',
+                        secondary: '#F9FF00',
+                        background: '#1A1A1A',
+                        foreground: '#F5F8F1',
+                        'deep-void': '#012300',
+                    },
+                    fontFamily: {
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                        ui: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-foreground min-h-screen relative overflow-x-hidden font-body">
+
+    <div id="athleticos-canvas-wrapper" class="absolute top-0 left-0 w-full h-full -z-10 overflow-hidden" style="background-color: #1A1A1A;">
+        <canvas id="athleticosNetwork"></canvas>
+    </div>
+
+    <div class="fixed top-0 left-0 right-0 h-10 bg-secondary text-deep-void z-[60] flex items-center justify-center px-4">
+        <p class="font-ui text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-center w-full truncate">
+            ALPHA LAUNCH PHASE: Limited Founding Partner positions remaining for the 2026 Cycle.
+            <a href="https://bayermedia.net/founding-partner-protocol" target="_blank" class="underline underline-offset-2 hover:opacity-80 ml-1">[View Partnership Terms →]</a>
+        </p>
+    </div>
+
+    <header class="fixed top-10 w-full z-50 bg-[#1A1A1A]/70 backdrop-blur-md border-b border-white/5">
+        <div class="container mx-auto px-4 h-[90px] md:h-28 flex items-center justify-between">
+            <a class="flex items-center gap-2" href="/">
+                <img src="https://vibe.filesafe.space/1777786939579445963/attachments/af2317c7-3b7b-427b-8314-24984696e9e7.png" alt="AthleticOS Logo" class="h-[72px] md:h-[108px] w-auto object-contain">
+            </a>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-4">
+                    <a class="font-ui text-[14px] text-foreground hover:text-secondary transition-colors" href="/legal">Legal</a>
+                    <span class="text-white/20 select-none">|</span>
+                    <a href="https://portal.athleticos.net/login" target="_blank" class="font-ui text-[14px] text-foreground hover:text-secondary transition-colors">Partner Portal</a>
+                    <span class="text-white/20 select-none">|</span>
+                </div>
+                <a href="#audit" class="inline-flex items-center justify-center rounded-md font-ui uppercase tracking-[1px] font-bold bg-primary text-deep-void hover:bg-secondary transition-colors whitespace-nowrap text-xs px-4 h-9">
+                    Initialize Audit
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 min-h-[90vh] flex items-center">
+        <div class="container relative z-10 mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center space-y-8">
+                <h1 id="hero-headline" class="font-heading text-5xl md:text-7xl font-bold leading-tight tracking-tight text-foreground">
+                    <span class="opacity-50 text-sm block mb-2 uppercase tracking-widest animate-pulse">Syncing Logic...</span>
+                </h1>
+                <p id="hero-subtext" class="font-body text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
+                    </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 w-full max-w-3xl mx-auto">
+                    <a href="/league" class="flex flex-col items-center justify-center gap-2 rounded-md px-8 py-6 bg-deep-void border border-primary/30 hover:border-primary hover:bg-primary/10 text-foreground hover:text-primary transition-all shadow-[0_0_20px_rgba(82,201,32,0.05)]">
+                        <span class="font-ui uppercase tracking-widest text-sm font-bold">League Director</span>
+                        <span class="font-body text-xs text-foreground/50">Macro-Level Logistics</span>
+                    </a>
+                    <a href="/ad" class="flex flex-col items-center justify-center gap-2 rounded-md px-8 py-6 bg-deep-void border border-secondary/30 hover:border-secondary hover:bg-secondary/10 text-foreground hover:text-secondary transition-all shadow-[0_0_20px_rgba(249,255,0,0.05)]">
+                        <span class="font-ui uppercase tracking-widest text-sm font-bold">Athletic Director</span>
+                        <span class="font-body text-xs text-foreground/50">Institutional Command</span>
+                    </a>
+                    <a href="/coach" class="flex flex-col items-center justify-center gap-2 rounded-md px-8 py-6 bg-deep-void border border-primary/30 hover:border-primary hover:bg-primary/10 text-foreground hover:text-primary transition-all shadow-[0_0_20px_rgba(82,201,32,0.05)]">
+                        <span class="font-ui uppercase tracking-widest text-sm font-bold">Coach / Ops</span>
+                        <span class="font-body text-xs text-foreground/50">Field-Level Execution</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const API_URL = "https://script.google.com/a/macros/athleticos.net/s/AKfycbzhqjm1IG_d9ho-_y4E2Y7Ht1Gp3gcoQDLXYdE3TIAF-TjBFbud6x5mFJpId7LB4mGM/exec";
+
+        async function loadContent() {
+            try {
+                const response = await fetch(API_URL);
+                const data = await response.json();
+                
+                if(data.Home && data.Home.Hero) {
+                    document.getElementById('hero-headline').innerText = data.Home.Hero.Headline.text;
+                    document.getElementById('hero-subtext').innerText = data.Home.Hero.Subtext.text;
+                }
+            } catch (error) {
+                console.error("AthleticOS Logic Sync Failed:", error);
+                document.getElementById('hero-headline').innerText = "Select Your Command Tier.";
+                document.getElementById('hero-subtext').innerText = "AthleticOS provides bespoke logic engines tailored to your specific operational role.";
+            }
+        }
+        
+        loadContent();
+    </script>
+
+    <script>
+        const canvas = document.getElementById('athleticosNetwork');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let nodes = [];
+        const hubs = [];
+        
+        const COLOR_LIME_BASE = '82, 201, 32';      
+        const COLOR_YELLOW_BASE = '249, 255, 0';    
+        const COLOR_CARBON = '#1A1A1A';
+
+        let mouse = { x: -1000, y: -1000, radius: 200 };
+
+        function resize() {
+            const wrapper = document.getElementById('athleticos-canvas-wrapper');
+            width = canvas.width = wrapper.offsetWidth || window.innerWidth;
+            height = canvas.height = wrapper.offsetHeight || window.innerHeight;
+        }
+
+        window.addEventListener('resize', () => {
+            resize();
+            initNetwork();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = -1000;
+            mouse.y = -1000;
+        });
+
+        class Node {
+            constructor(x, y, isHub = false) {
+            this.x = x;
+            this.y = y;
+            this.baseX = x;
+            this.baseY = y;
+            this.isHub = isHub;
+            
+            this.baseSize = isHub ? 6 : Math.random() * 1.5 + 1;
+            this.vx = (Math.random() - 0.5) * 0.8;
+            this.vy = (Math.random() - 0.5) * 0.8;
+            this.offset = Math.random() * 100; 
+            }
+
+            draw(time) {
+            ctx.beginPath();
+            
+            if (this.isHub) {
+                let currentSize = this.baseSize + Math.sin(time * 3 + this.offset) * 2;
+                ctx.arc(this.x, this.y, currentSize, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${COLOR_LIME_BASE}, 1)`;
+                ctx.shadowBlur = 20;
+                ctx.shadowColor = `rgba(${COLOR_LIME_BASE}, 0.8)`;
+            } else {
+                ctx.arc(this.x, this.y, this.baseSize, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(${COLOR_LIME_BASE}, 0.6)`;
+                ctx.shadowBlur = 0; 
+            }
+            
+            ctx.fill();
+            }
+
+            update(time) {
+            if (!this.isHub) {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > width) this.vx = -this.vx;
+                if (this.y < 0 || this.y > height) this.vy = -this.vy;
+            }
+
+            let dx = mouse.x - this.x;
+            let dy = mouse.y - this.y;
+            let distance = Math.sqrt(dx * dx + dy * dy);
+            
+            if (distance < mouse.radius) {
+                const forceDirectionX = dx / distance;
+                const forceDirectionY = dy / distance;
+                const force = (mouse.radius - distance) / mouse.radius; 
+                const pushX = forceDirectionX * force * 4;
+                const pushY = forceDirectionY * force * 4;
+                
+                this.x -= pushX;
+                this.y -= pushY;
+            } else {
+                if (this.x !== this.baseX && this.isHub) this.x -= (this.x - this.baseX) * 0.05;
+                if (this.y !== this.baseY && this.isHub) this.y -= (this.y - this.baseY) * 0.05;
+            }
+
+            this.draw(time);
+            }
+        }
+
+        function initNetwork() {
+            nodes = [];
+            hubs.length = 0;
+            
+            hubs.push(new Node(width * 0.25, height * 0.4, true));
+            hubs.push(new Node(width * 0.5, height * 0.6, true));
+            hubs.push(new Node(width * 0.75, height * 0.35, true));
+            
+            hubs.forEach(hub => nodes.push(hub));
+
+            let numberOfNodes = Math.floor((width * height) / 10000); 
+            for (let i = 0; i < numberOfNodes; i++) {
+            nodes.push(new Node(Math.random() * width, Math.random() * height));
+            }
+        }
+
+        function drawBackground() {
+            let gradientX = mouse.x !== -1000 ? mouse.x : width / 2;
+            let gradientY = mouse.y !== -1000 ? mouse.y : height / 2;
+            
+            let bgGradient = ctx.createRadialGradient(gradientX, gradientY, 0, gradientX, gradientY, width * 0.6);
+            bgGradient.addColorStop(0, '#023800'); 
+            bgGradient.addColorStop(1, COLOR_CARBON); 
+            
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, width, height);
+        }
+
+        function connectAndStreamData(time) {
+            ctx.shadowBlur = 0; 
+            
+            for (let a = 0; a < nodes.length; a++) {
+            for (let b = a + 1; b < nodes.length; b++) {
+                let dx = nodes[a].x - nodes[b].x;
+                let dy = nodes[a].y - nodes[b].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 150) {
+                let opacity = 1 - (distance / 150);
+                let isHubConnection = nodes[a].isHub || nodes[b].isHub;
+
+                ctx.beginPath();
+                ctx.moveTo(nodes[a].x, nodes[a].y);
+                ctx.lineTo(nodes[b].x, nodes[b].y);
+                
+                if (isHubConnection) {
+                    ctx.strokeStyle = `rgba(${COLOR_LIME_BASE}, ${opacity * 0.6})`;
+                    ctx.lineWidth = 1.2;
+                } else {
+                    ctx.strokeStyle = `rgba(${COLOR_LIME_BASE}, ${opacity * 0.2})`;
+                    ctx.lineWidth = 0.5;
+                }
+                ctx.stroke();
+
+                if (isHubConnection && opacity > 0.3) {
+                    let t = (time * 0.5 + nodes[b].offset) % 1; 
+                    
+                    let startNode = nodes[a].isHub ? nodes[b] : nodes[a];
+                    let endNode = nodes[a].isHub ? nodes[a] : nodes[b];
+                    
+                    let packetX = startNode.x + (endNode.x - startNode.x) * t;
+                    let packetY = startNode.y + (endNode.y - startNode.y) * t;
+
+                    ctx.beginPath();
+                    ctx.arc(packetX, packetY, 2, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(${COLOR_YELLOW_BASE}, ${opacity})`;
+                    ctx.shadowBlur = 10;
+                    ctx.shadowColor = `rgba(${COLOR_YELLOW_BASE}, 1)`;
+                    ctx.fill();
+                    ctx.shadowBlur = 0; 
+                }
+                }
+            }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            let time = Date.now() * 0.001; 
+            
+            drawBackground();
+            
+            connectAndStreamData(time);
+            nodes.forEach(node => node.update(time));
+        }
+
+        resize();
+        initNetwork();
+        animate();
+    </script>
+</body>
+</html>
