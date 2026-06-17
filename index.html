@@ -14,10 +14,13 @@
                 extend: {
                     colors: {
                         primary: '#52C920',
+                        'primary-foreground': '#012300',
                         secondary: '#F9FF00',
+                        'secondary-foreground': '#012300',
                         background: '#1A1A1A',
                         foreground: '#F5F8F1',
                         'deep-void': '#012300',
+                        'muted-foreground': '#A3A3A3',
                     },
                     fontFamily: {
                         heading: ['Plus Jakarta Sans', 'sans-serif'],
@@ -29,29 +32,42 @@
         }
     </script>
 </head>
-<body class="bg-background text-foreground min-h-screen relative overflow-x-hidden font-body flex flex-col">
+<body class="bg-background text-foreground min-h-screen relative overflow-x-hidden font-body flex flex-col selection:bg-primary/30">
 
     <div id="athleticos-canvas-wrapper" class="fixed top-0 left-0 w-full h-full -z-10 overflow-hidden" style="background-color: #1A1A1A;">
         <canvas id="athleticosNetwork"></canvas>
     </div>
 
-    <div class="w-full bg-primary text-deep-void px-4 py-2 text-center text-xs font-ui font-bold uppercase tracking-widest relative z-50">
-        AthleticOS Alpha Integration
+    <div class="fixed top-0 left-0 right-0 h-10 bg-secondary text-secondary-foreground z-[60] flex items-center justify-center px-4">
+        <p class="font-ui text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-wider text-center w-full truncate">
+            ALPHA LAUNCH PHASE: Limited Founding Partner positions remaining for the 2026 Cycle. 
+            <a href="https://bayermedia.net/founding-partner-protocol" target="_blank" rel="noopener noreferrer" class="underline underline-offset-2 hover:opacity-80 ml-1">[View Partnership Terms →]</a>
+        </p>
     </div>
 
-    <header class="w-full relative z-50 bg-background/80 backdrop-blur-md border-b border-white/10">
-        <div class="container mx-auto px-4 h-20 flex items-center justify-between">
-            <a href="#" class="font-heading text-2xl font-bold text-foreground flex items-center gap-2">
-                <div class="w-8 h-8 rounded bg-primary flex items-center justify-center text-deep-void font-black text-lg shadow-[0_0_10px_rgba(82,201,32,0.5)]">A</div>
-                Athletic<span class="text-primary">OS</span>
+    <header class="fixed top-10 w-full z-50 bg-[#1A1A1A]/70 backdrop-blur-md border-b border-white/5">
+        <div class="container mx-auto px-4 h-[90px] md:h-28 flex items-center justify-between">
+            <a class="flex items-center gap-2" href="/">
+                <img src="https://vibe.filesafe.space/1777786939579445963/attachments/af2317c7-3b7b-427b-8314-24984696e9e7.png" alt="AthleticOS Sovereign Logic Engine Logo" class="h-[72px] md:h-[108px] w-auto object-contain">
             </a>
-            <div class="hidden md:flex items-center gap-6">
-                <span class="text-sm font-ui text-foreground/50 uppercase tracking-wider">Facility Onboarding Portal</span>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-4">
+                    <a class="font-body text-[14px] text-[#F5F8F1] hover:text-secondary transition-colors" href="/legal">Legal</a>
+                    <span class="text-white/20 select-none">|</span>
+                    <a href="https://portal.athleticos.net/login" target="_blank" rel="noopener noreferrer" class="font-body text-[14px] text-[#F5F8F1] hover:text-secondary transition-colors">Partner Portal</a>
+                    <span class="text-white/20 select-none">|</span>
+                </div>
+                <a href="/#audit" class="inline-flex items-center justify-center gap-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 rounded-md font-ui uppercase tracking-[1px] font-bold bg-primary text-primary-foreground hover:bg-secondary hover:text-secondary-foreground transition-colors whitespace-nowrap text-xs px-4 h-9">Initialize Audit</a>
+                <span class="hidden md:inline-block text-white/20 select-none">|</span>
+                <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:text-accent-foreground h-10 w-10 text-foreground hover:bg-white/5" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="radix-:r0:" data-state="closed">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu h-8 w-8"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+                    <span class="sr-only">Toggle navigation menu</span>
+                </button>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow flex flex-col justify-center relative pt-12 pb-20 md:pt-20 md:pb-32">
+    <main class="flex-grow flex flex-col justify-center relative pt-40 pb-20 md:pt-48 md:pb-32">
         <div class="container relative z-10 mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center space-y-8">
                 
@@ -73,9 +89,64 @@
         </div>
     </main>
 
-    <footer class="w-full relative z-50 border-t border-white/10 bg-background/90 backdrop-blur-md py-6 mt-auto">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-foreground/50 text-sm font-body">&copy; 2026 AthleticOS. Sovereign Logic Engine.</p>
+    <footer class="bg-background border-t-2 border-primary pt-16 pb-8 mt-auto relative z-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+                <div class="space-y-6">
+                    <h4 class="font-ui text-lg uppercase tracking-widest font-bold text-foreground">The Blueprint</h4>
+                    <div class="flex flex-col space-y-3">
+                        <a href="/#architecture" class="font-body text-foreground hover:text-secondary transition-colors">System Blueprint</a>
+                        <a href="/#logic" class="font-body text-foreground hover:text-secondary transition-colors">Data Sovereignty</a>
+                        <a href="/#ecosystem" class="font-body text-foreground hover:text-secondary transition-colors">Performance Stack</a>
+                        <a href="/#engine" class="font-body text-foreground hover:text-secondary transition-colors">Command Logic</a>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="font-ui text-lg uppercase tracking-widest font-bold text-foreground">Governance</h4>
+                    <div class="flex flex-col space-y-3">
+                        <a href="/legal" class="font-body text-foreground hover:text-secondary transition-colors">Terms of Service</a>
+                        <a href="/legal" class="font-body text-foreground hover:text-secondary transition-colors">Privacy Policy</a>
+                        <a href="/#standards" title="Stateless logic designed for global institutional data autonomy" class="font-body text-foreground hover:text-secondary transition-colors">PDPA/GDPR Compliance</a>
+                        <a href="https://bayermedia.net" target="_blank" rel="noopener noreferrer" class="font-body text-foreground hover:text-secondary transition-colors">Institutional Governance</a>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <h4 class="font-ui text-lg uppercase tracking-widest font-bold text-foreground">Access &amp; Support</h4>
+                    <div class="flex flex-col space-y-3">
+                        <a href="https://portal.athleticos.net/login" class="font-body text-foreground hover:text-secondary transition-colors">Partner Portal</a>
+                        <a href="/#audit" class="font-body text-foreground hover:text-secondary transition-colors">Initialize Audit</a>
+                        <a href="/#engine" title="Sovereign Architect Protocol — guides for managing AppSheet deployments and Google Vault security." class="font-body text-foreground hover:text-secondary transition-colors">Partner Documentation</a>
+                    </div>
+                    <div class="pt-4 space-y-2">
+                        <p class="font-ui text-sm text-[#F5F8F1]"><span class="font-bold">Entity:</span> AthleticOS | A Division of Bayer Media Services</p>
+                        <p class="font-ui text-sm text-[#F5F8F1]"><span class="font-bold">Address:</span> 2578 Broadway, New York, NY 10025</p>
+                        <p class="font-ui text-sm text-[#F5F8F1]"><span class="font-bold">Support:</span> <a href="mailto:support@athleticos.net" class="hover:text-primary transition-colors">support@athleticos.net</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-white/10 pt-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
+                <div class="max-w-3xl space-y-4">
+                    <div class="flex items-center gap-3 opacity-50">
+                        <img src="https://assets.cdn.filesafe.space/w6yl5bCMqSFns8z4MHRt/media/6937bf41aba1f67abec45673.png" alt="Bayer Media Services" class="h-12 w-12 object-contain grayscale" width="48" height="48" loading="lazy">
+                        <span class="font-ui uppercase tracking-widest text-sm">Governing Architect</span>
+                    </div>
+                    <p class="font-body text-sm text-muted-foreground leading-relaxed">AthleticOS is a high-performance integrated ecosystem engineered and governed by Bayer Media Services. All stateless logic deployments and data protocols are subject to the Sovereign Architect Protocol.</p>
+                </div>
+                <div class="flex flex-wrap gap-4 lg:justify-end">
+                    <div class="px-3 py-1.5 rounded-full border border-white/10 bg-black/40 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield h-3 w-3 text-primary"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                        <span class="font-ui font-bold text-[10px] uppercase tracking-wider text-muted-foreground">Zero-Retention Logic Encryption</span>
+                    </div>
+                    <div class="px-3 py-1.5 rounded-full border border-white/10 bg-black/40 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield h-3 w-3 text-primary"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                        <span class="font-ui font-bold text-[10px] uppercase tracking-wider text-muted-foreground">Engineered for Google Workspace &amp; Cloud Architecture</span>
+                    </div>
+                    <div class="px-3 py-1.5 rounded-full border border-white/10 bg-black/40 flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield h-3 w-3 text-primary"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+                        <span class="font-ui font-bold text-[10px] uppercase tracking-wider text-muted-foreground">FERPA / PDPA / GDPR Sovereign Logic Protocol</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -201,5 +272,7 @@
 
         resize(); initNetwork(); animate();
     </script>
+    
+    <script src="https://beta.leadconnectorhq.com/loader.js" data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="68bbcc0cfa0aac00dcc117c3" data-loader-instance="loader-1781669844073-e4bo3jqis"></script>
 </body>
 </html>
