@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AthleticOS | Sovereign Logic Engine</title>
+    <title>AthleticOS | Facility Mapping & Onboarding</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
     
@@ -40,61 +40,29 @@
     <alpha-banner></alpha-banner>
     <global-header></global-header>
 
-    <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 min-h-[90vh] flex items-center">
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-32 min-h-[90vh] flex items-center">
         <div class="container relative z-10 mx-auto px-4">
             <div class="max-w-4xl mx-auto text-center space-y-8">
-                <h1 id="hero-headline" class="font-heading text-5xl md:text-7xl font-bold leading-tight tracking-tight text-foreground">
-                    <span class="opacity-50 text-sm block mb-2 uppercase tracking-widest animate-pulse">Syncing Logic...</span>
+                
+                <h1 class="font-heading text-4xl md:text-6xl font-bold leading-tight tracking-tight text-foreground">
+                    Facility Mapping & <span class="text-primary">Onboarding</span>
                 </h1>
-                <p id="hero-subtext" class="font-body text-xl md:text-2xl text-foreground/70 max-w-2xl mx-auto leading-relaxed"></p>
+                <p class="font-body text-lg md:text-xl text-foreground/70 max-w-2xl mx-auto leading-relaxed">
+                    Please select a time below to map your school's facilities and secure your home-field availability in the league database.
+                </p>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 w-full max-w-3xl mx-auto">
-                    <a href="/league" class="flex flex-col items-center justify-center gap-2 rounded-md px-8 py-6 bg-deep-void border border-primary/30 hover:border-primary hover:bg-primary/10 text-foreground hover:text-primary transition-all shadow-[0_0_20px_rgba(82,201,32,0.05)]">
-                        <span class="font-ui uppercase tracking-widest text-sm font-bold">League Director</span>
-                        <span class="font-body text-xs text-foreground/50">Macro-Level Logistics</span>
-                    </a>
-                    <a href="/ad" class="flex flex-col items-center justify-center gap-2 rounded-md px-8 py-6 bg-deep-void border border-secondary/30 hover:border-secondary hover:bg-secondary/10 text-foreground hover:text-secondary transition-all shadow-[0_0_20px_rgba(249,255,0,0.05)]">
-                        <span class="font-ui uppercase tracking-widest text-sm font-bold">Athletic Director</span>
-                        <span class="font-body text-xs text-foreground/50">Institutional Command</span>
-                    </a>
-                    <a href="/coach" class="flex flex-col items-center justify-center gap-2 rounded-md px-8 py-6 bg-deep-void border border-primary/30 hover:border-primary hover:bg-primary/10 text-foreground hover:text-primary transition-all shadow-[0_0_20px_rgba(82,201,32,0.05)]">
-                        <span class="font-ui uppercase tracking-widest text-sm font-bold">Coach / Ops</span>
-                        <span class="font-body text-xs text-foreground/50">Field-Level Execution</span>
-                    </a>
+                <div class="bg-deep-void/90 border border-primary/30 rounded-xl p-2 md:p-4 shadow-[0_0_30px_rgba(82,201,32,0.1)] backdrop-blur-md relative z-20 w-full max-w-4xl mx-auto">
+                    <div class="calendar-container" style="width: 100%; min-height: 700px; overflow-y: auto; -webkit-overflow-scrolling: touch; border-radius: 8px;">
+                        <iframe src="https://systems.athleticos.net/widget/booking/IGMwkwnVLvrn35wYV9bE" style="width: 100%; border:none; overflow: hidden; min-height: 700px;" scrolling="no" id="IGMwkwnVLvrn35wYV9bE_1781667457689"></iframe>
+                        <script src="https://systems.athleticos.net/js/form_embed.js" type="text/javascript"></script>
+                    </div>
                 </div>
+
             </div>
         </div>
     </section>
 
     <global-footer></global-footer>
-
-    <script>
-        const API_URL = "https://script.google.com/a/macros/athleticos.net/s/AKfycbzhqjm1IG_d9ho-_y4E2Y7Ht1Gp3gcoQDLXYdE3TIAF-TjBFbud6x5mFJpId7LB4mGM/exec";
-
-        async function loadContent() {
-            try {
-                // Stripped out the CORS-triggering headers. The timestamp alone acts as the cache buster.
-                const response = await fetch(API_URL + "?t=" + new Date().getTime());
-                
-                if (!response.ok) throw new Error("HTTP Status " + response.status);
-                const data = await response.json();
-                
-                if(data.Home && data.Home.Hero) {
-                    if (data.Home.Hero.Headline) document.getElementById('hero-headline').innerText = data.Home.Hero.Headline.text;
-                    if (data.Home.Hero.Subtext) document.getElementById('hero-subtext').innerText = data.Home.Hero.Subtext.text;
-                } else {
-                    throw new Error("Missing 'Home' or 'Hero' object in Google Sheet.");
-                }
-            } catch (error) {
-                console.error("AthleticOS Logic Sync Failed:", error);
-                document.getElementById('hero-headline').innerText = "Data Alignment Error";
-                document.getElementById('hero-subtext').innerHTML = "We connected to Google, but couldn't find the target text. <br><br>Check your Google Sheet and ensure Column A says exactly <strong>Home</strong> and Column B says <strong>Hero</strong>. Capitalization matters!";
-                document.getElementById('hero-subtext').className = "font-body text-lg text-secondary border border-secondary/50 bg-secondary/10 p-4 rounded-xl max-w-2xl mx-auto leading-relaxed mt-6";
-            }
-        }
-        
-        loadContent();
-    </script>
 
     <script>
         const canvas = document.getElementById('athleticosNetwork');
